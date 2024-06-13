@@ -1,0 +1,23 @@
+
+do
+  let plies = "<5 10 15>"
+  d1
+    $ (|* cps (range 0.25 2.5 $ slow 6 $ tri))
+    $ (|* cps (segment 1 $ range 0.5 1.5 $ shiftBy 2 $ rand))
+    $ every 5 (const $ stack [
+      s "rytm" # midichan 3 # note "c3" # amp 1
+      , s "harmor" # midichan 8 # note "c5" # amp 0.1
+      , s "harmor" # midichan 9 # note "c5" # amp 1
+    ])
+    $ stack [
+      plyWith plies (# amp 0.5) $ s "rytm" # midichan 0 # note "c3" # amp 1
+      , plyWith plies (# amp 0.7) $ s "harmor" # midichan 8 # note "c4" # amp 1
+      , s "harmor" # midichan 9 # note "c5" # amp 0.1
+      , (0.5 ~>) $ s "rytm" # midichan 2 # note "c3" # amp 1
+      , slow 4.5 $ s "rytm" # midichan "[4,5]" # note "c3" # amp 1
+      , g $ slow 5.5 $ s "rytm" # midichan 6 # note "c3" # amp 1
+    ] # cps ("1.5" * "<0.3 0.5>" * "<1 1.1 1.2>")
+
+  d2 $ (|+ note "-32") $ slow 3.333 $ amp 1 # note (scale "ritusen" "{0 -1 1 -2 2}%16") # s "rytm" # midichan 1
+
+    hush
