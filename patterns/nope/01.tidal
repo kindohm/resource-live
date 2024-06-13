@@ -1,0 +1,36 @@
+hush
+
+
+
+do
+  let pat = "{1@4 1@3 1@3 1@3 1@3 1 1 1 1 0@3 0@3 }%16"
+      ttt = modTime 0 0.25 1 $ modTime 0 0.25 1 
+                  $ (0.666/2)
+      notemod x = someCyclesBy 0.5 (|+ note "[-2 -4]/4") $ x
+      mod x = shift
+                $ someCyclesBy 0.5 rev
+                $ shift
+                $ someCyclesBy 0.5 (iter 8)
+                $ shift
+                $ x
+  d1
+    $  mod
+    $ stack [
+      struct pat $ s "rytm" # midichan 0 # note "c3" # amp 1
+      , struct (inv pat) $ s "rytm" # midichan 1 # note "c3" # amp 1
+      ,  ("1s" ~>) $ stutWith "{1 2 3}%16" "1s" id $ struct pat $ s "rytm" # midichan 8 # note "c3" # amp 1
+      , struct pat $ sendTempo ttt
+    ] # cpsWTF ttt
+  d2  
+    $ (|+ midichan 0)
+    $ mod
+    $ stack [
+      notemod $ struct pat $ s "harmor" # midichan 0 # note "c5" # amp 1
+      , notemod $ struct (inv pat) $ s "harmor" # midichan 0 # note "c5" # amp 0.1
+      , notemod $ struct (inv pat) $ s "harmor" # midichan 2 # note "c5" # amp 1
+      , notemod $ struct pat $ s "harmor" # midichan 2 # note "c5" # amp 0.1
+    ]
+  d3
+    $ fast 1 $ struct "1" $ s "rytm" # midichan 3 # note "c3" # amp 1
+
+    hush
