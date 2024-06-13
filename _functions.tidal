@@ -15,6 +15,12 @@ let
   roll2 prob x = sometimesBy prob (off "3s" id) $ x
   replicator text1 = [putStr (text1) | x <- replicate 500 text1]
   flood text2 = sequence_(replicator text2)
+  ssb = someCyclesBy
+  scb = ssb
+  sb = sometimesBy
+  cop prob x = sb prob (off "1s" id) $ x
+  hit = cop
+  
 
 do
   let ttt = modTime 0.6 0.2 4 $ modTime 0.5 0.3 3 $ (range 0.1 1 $ cF 1 "18") -- "0.4"

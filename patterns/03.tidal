@@ -1,0 +1,40 @@
+
+
+
+do
+  let pat1 = ("0@3 1@2 1@3 1@3 1@2 1@3 1@3 1@2 1@3 1@3 1@2 1@3")
+  let pat2 = ("0@3 1@2 1@3 1@3 0@2 0@3 1@3 1@2 1@3 1@3 1@2 1@3")
+  let pat = slowcat [pat1, pat2]
+  d1  
+    $ every 8 (const $ stack [
+      s "rytm" # midichan "[5,4]" # note "c3" # amp 1
+      , s "harmor" # midichan 6 # note "c5" # amp 0.1
+      , s "harmor" # midichan 7 # note "c5" # amp 0.1
+    ])
+    $ shift
+    $ ssb 0.5 rev
+    $ shift
+    $ ssb 0.5 (iter 8)
+    $ shift
+    $ hit 0.2
+    $ sb 0.2 (slow 2)
+    $ shift
+    $ roll 0.2
+    $ shift
+    $ stack [
+      struct (pat) $ s "rytm" # midichan 0 # note "c3" # amp 1
+      , struct (inv pat) $ s "rytm" # midichan 1 # note "c3" # amp 1
+      , struct pat $ s "harmor" # midichan 6 # note "c5" # amp 1
+      , struct (inv pat) $ s "harmor" # midichan 6 # note "c5" # amp 0.1
+      , struct pat $ s "harmor" # midichan 7 # note "c5" # amp 0.1
+      ,  struct (inv pat) $ s "harmor" # midichan 7 # note "c5" # amp 1
+      , slow 4 $ s "rytm" # midichan 10 # note "c3" # amp 1
+      , struct "1*16" $ s "rytm" # midichan 8 # note "c3" # amp 1
+    ] # cps (180/120/4)
+  d2
+    $ every 8 id $ fast 2 $ (0.5 ~>) $ s "rytm" # midichan 3 # note "c3" # amp 1
+  d3
+    $ every 8 g $ fast 4 $ s "rytm" # midichan 6 # note "c3" # amp 1
+
+
+    hush

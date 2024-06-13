@@ -7,13 +7,15 @@ do
     ]))
     $ stack [
       fast 2 $ s "harmor" # midichan "<4 5>" # note "c5" # amp 1 
-      , fast 2 $ s "harmor" # midichan "<4 5>" # note "c5" # amp 0.1
       , fast 2 $ midichan "<0 1>" # s "rytm" # note "c3" # amp 1
-      , off "1e" id $ every 1 id $ ("3s" ~>) $ fast 2 $ s "rytm" # midichan 2 # note "c3" # amp 1
-      , g $ (0.75 ~>) $ s "rytm" # midichan 3 # note "c3" # amp 1 # legato 0.15
-      , (0.25 ~>) $  fast 2 $ s "rytm" # midichan 8 # note "c3" # amp 1
-    ] # cps (120/120/2) # nudge (range 0 0.05 $ shiftBy 3 $ rand)
+      , every 1 id $ ("3s" ~>) $ fast 2 $ s "rytm" # midichan 2 # note "c3" # amp 1
+      , (0.75 ~>) $ s "rytm" # midichan 3 # note "c3" # amp 1 # legato 0.15
+      , (0.25 ~>) $ fast 2 $ s "rytm" # midichan 8 # note "c3" # amp 1
+    ] # cps (120/120/2) 
   d2
     $ slow 12 $ (0.75 ~>) $ s "harmor2" # midichan 0 # note "c5" # amp 1 # legato 0.8
+
+once $ s "rytm" # midichan 4 # note "c3" # amp 1 # legato 8
+
 
 hush

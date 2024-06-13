@@ -17,7 +17,7 @@ do
       ])
     $ stack [
       stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "rytm" # midichan 0 # note "c3" # amp 1
-      , ("4s" <~) $ stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "rytm" # midichan 8 # note "c3" # amp 1
+      , ("2s" <~) $ stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "rytm" # midichan 8 # note "c3" # amp 1
       , ("1s" <~) $ stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "rytm" # midichan 5 # note "c3" # amp 1
       , (|+ midichan harmorChanPat) $ stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "harmor" # midichan 0 # note "c5" # amp 1
       , (|+ midichan harmorChanPat) $ stutWith 9 "3s" id $ (0.25 ~>) $ slow 2 $ s "harmor" # midichan 1 # note "c5" # amp 0.1
