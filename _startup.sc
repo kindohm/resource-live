@@ -59,7 +59,7 @@ s.waitForBoot {
 			"😍 added Syntakt".postln;
 		});
 
-		if (item.device == "Midi Fighter Twister 4", {
+		if (item.device == "XXX Midi Fighter Twister 4", {
 			// if (item.device == "TouchOSC Bridge", {
 			// 	if ((item.device == "IAC Driver") && (item.name == "Bus 2"), {
 			"attempting to connect to MIDI input to TouchOSC Bridge".postln;
